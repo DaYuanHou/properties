@@ -1,0 +1,72 @@
+#设置配置文件的加载，开发环境：dev,生成环境：prod
+spring:
+  profiles:
+    active: prod
+  #设置controller返回，过滤字段为空的内容
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 800MB
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+  transaction:
+    rollback-on-commit-failure: true
+  redis:
+    # im的地址回传的redis地址（实际就是im的地址）
+    host: 58.215.0.0
+    port: 6379
+    password: oooo
+    #jedis
+    jedis:
+      pool:
+        max-active: 1000
+        max-idle: 500
+        min-idle: 500
+    timeout: 10000
+  # rabbitmq
+  rabbitmq:
+    host: 58.215.0.0.
+    port: 5678
+    username: guest
+    password: oooo
+    dynamic: true
+    cache:
+      connection:
+        mode: channel
+
+
+#tomcat的配置
+server:
+  port: 8087
+  tomcat:
+    max-threads: 6000
+    max-connections: 10000
+    max-swallow-size: 10MB
+    max-http-post-size: 10MB
+    accept-count: 600
+    basedir: ./temp
+
+#logback的配置
+logging:
+  config: classpath:logback-spring.xml
+
+passEncryption: fdsfdsf
+linxuUser: root
+linxuPwd: 112121
+
+#局域网监听下载的发布订阅redis的相关配置，外网redis的配置
+downloadRedis:
+  redisIp: "58.215.0.0"
+  redisPassword: "fdfsdfds"
+  redisPort: 6379
+  #ipa包上传的文件服务器地址和端口
+  fileServer: "http://127.0.0.1:8087"
+
+#文件服务器路径
+uploadsPath:
+  scriptPath: /opt/appFile/script/
+  coreFilePath: /opt/appFile/coreFile/
+  ipaPath: /opt/appFile/ipa/
+  cpaScript: /opt/appFile/cpaScript/
